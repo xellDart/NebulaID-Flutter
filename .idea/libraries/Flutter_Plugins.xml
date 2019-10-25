@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_ml_vision-0.9.2+2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/vibration-1.2.2" />
+      <root url="file://$USER_HOME$/.pub-cache/git/flutter_native_image-5d71bdc5624a846a1e973a43018f7b17d636fdc8" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-1.4.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/camera-0.5.6+1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
