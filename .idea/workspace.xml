@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d6f8f7-6d15-4689-9d72-d5f78c9cccf6" name="Default Changelist" comment="" />
+    <list default="true" id="21d6f8f7-6d15-4689-9d72-d5f78c9cccf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/lib/machine/documents/select_document.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/machine/documents/select_document.dart" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -22,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/nebula_id.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="395">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -31,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/machine/documents/select_document.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1751">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="22" />
+            <state relative-caret-position="197">
+              <caret line="113" column="32" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -43,7 +45,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/machine/documents/document.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
+            <state relative-caret-position="-5513">
               <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
             </state>
           </provider>
@@ -155,8 +157,8 @@
         <option value="$PROJECT_DIR$/lib/utils/item_list.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/machine/documents/document.dart" />
-        <option value="$PROJECT_DIR$/lib/machine/documents/select_document.dart" />
         <option value="$PROJECT_DIR$/lib/nebula_id.dart" />
+        <option value="$PROJECT_DIR$/lib/machine/documents/select_document.dart" />
       </list>
     </option>
   </component>
@@ -230,44 +232,6 @@
               <item name="nebula_id" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Flutter Plugins" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="nebula_id" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Flutter Plugins" type="70bed36:NamedLibraryElementNode" />
-              <item name="nebula_id" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nebula_id" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Flutter Plugins" type="70bed36:NamedLibraryElementNode" />
-              <item name="nebula_id" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nebula_id" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Flutter Plugins" type="70bed36:NamedLibraryElementNode" />
-              <item name="nebula_id" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="machine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nebula_id" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Flutter Plugins" type="70bed36:NamedLibraryElementNode" />
-              <item name="nebula_id" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="machine" type="462c0819:PsiDirectoryNode" />
-              <item name="documents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nebula_id" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Flutter Plugins" type="70bed36:NamedLibraryElementNode" />
-              <item name="nebula_id" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -476,24 +440,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/machine/documents/document.dart">
+    <entry file="file://$PROJECT_DIR$/lib/nebula_id.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        <state relative-caret-position="395">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/nebula_id.dart">
+    <entry file="file://$PROJECT_DIR$/lib/machine/documents/document.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state relative-caret-position="-5513">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/machine/documents/select_document.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1751">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="197">
+          <caret line="113" column="32" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
