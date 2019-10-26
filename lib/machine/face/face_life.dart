@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
+import 'package:nebula_id/alerts/loading.dart';
 import 'package:nebula_id/paints/circle.dart';
 import 'package:nebula_id/presenter/presenter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -58,6 +59,8 @@ class FaceState extends State<Face>
   bool isFaceAngleRightDone = false;
   bool inStream = true;
   bool isFaceAngleLeftDone = false;
+
+  DialogState _dialogState = DialogState.DISMISSED;
 
   String toRight;
   String toLeft;
@@ -135,10 +138,15 @@ class FaceState extends State<Face>
   }
 
   @override
-  void onResult(value) => widget.resultFace();
+  void onResult(value) {
+    setState(() => _dialogState = DialogState.COMPLETED);
+    Timer(Duration(seconds: 3), () => setState(() => _dialogState = DialogState.DISMISSED));
+    widget.resultFace();
+  }
 
   @override
   void onError(DioError err) {
+    Timer(Duration(seconds: 3), () => setState(() => _dialogState = DialogState.DISMISSED));
     print(err.message);
     //err.response.data['message']
   }
@@ -153,6 +161,7 @@ class FaceState extends State<Face>
   }
 
   sendPhoto() {
+    _dialogState = DialogState.LOADING;
     ApiPresenter.face(this, {
       'images': photos.sublist(0, 2),
     }).saveFace();
