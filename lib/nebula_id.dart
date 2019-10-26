@@ -7,7 +7,7 @@ import 'package:nebula_id/machine/face/face_life.dart';
 
 class NebulaId {
 
-  Future<Widget> faceUUID(
+  Widget faceUUID(
       String title,
       String subtitle,
       String extra,
@@ -16,7 +16,7 @@ class NebulaId {
       String closeEyes,
       String takePhoto,
       OnResultFace resultFace,
-      List<List<Color>> colors) async {
+      List<List<Color>> colors) {
     return new Face(
       title: title,
       subtitle: subtitle,
