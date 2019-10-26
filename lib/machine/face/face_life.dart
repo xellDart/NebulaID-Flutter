@@ -279,58 +279,63 @@ class FaceState extends State<Face>
       );
     }
     return new Center(
-      child: new Column(
+      child: new Stack(
         children: <Widget>[
-          new Padding(
-              padding: EdgeInsets.only(
-                  left: 20.0, right: 20.0, bottom: 20.0, top: 20.0),
-              child: Text(widget.subtitle,
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(color: Colors.grey[700]))),
-          new Padding(
-              padding: EdgeInsets.only(
-                  left: 20.0, right: 20.0, bottom: topHeight - 130),
-              child: Text(onTextPress,
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500))),
-          new Center(
-            child: new Container(
-              height: topHeight,
-              width: topHeight,
-              child: new CustomPaint(
-                  foregroundPainter: new Circle(
-                      lineColor: actualBack,
-                      completeColor: actualFront,
-                      completePercent: percentage,
-                      width: 10.0),
-                  child: GestureDetector(
-                    onTap: controller != null &&
-                            controller.value.isInitialized &&
-                            !controller.value.isRecordingVideo
-                        ? tap
-                        : null,
-                    child: cameraWidget()
-                  ))
-            )
+          new Column(
+              children: <Widget>[
+                new Padding(
+                    padding: EdgeInsets.only(
+                        left: 20.0, right: 20.0, bottom: 20.0, top: 20.0),
+                    child: Text(widget.subtitle,
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(color: Colors.grey[700]))),
+                new Padding(
+                    padding: EdgeInsets.only(
+                        left: 20.0, right: 20.0, bottom: topHeight - 130),
+                    child: Text(onTextPress,
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.grey[700],
+                            fontWeight: FontWeight.w500))),
+                new Center(
+                    child: new Container(
+                        height: topHeight,
+                        width: topHeight,
+                        child: new CustomPaint(
+                            foregroundPainter: new Circle(
+                                lineColor: actualBack,
+                                completeColor: actualFront,
+                                completePercent: percentage,
+                                width: 10.0),
+                            child: GestureDetector(
+                                onTap: controller != null &&
+                                    controller.value.isInitialized &&
+                                    !controller.value.isRecordingVideo
+                                    ? tap
+                                    : null,
+                                child: cameraWidget()
+                            ))
+                    )
+                ),
+                Padding(
+                    padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
+                    child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: widget.extra,
+                                  style: TextStyle(color: Colors.grey[700]))
+                            ]
+                        )
+                    )),
+                widget.bottom
+              ]
           ),
-          Padding(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: widget.extra,
-                        style: TextStyle(color: Colors.grey[700]))
-                  ]
-                )
-              )),
-          widget.bottom
+          new LoadingDialog(state: _dialogState)
         ],
-      ),
+      )
     );
   }
 
