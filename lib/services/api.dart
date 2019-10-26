@@ -28,6 +28,7 @@ class ApiService implements Service {
 
   @override
   saveFace(Map data) async {
+    print(await auth.getUUID());
     Response response = await dio.post(
       'facial_id/${await auth.getUUID()}',
       data: jsonEncode(data),

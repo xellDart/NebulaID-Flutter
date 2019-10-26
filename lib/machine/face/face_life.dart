@@ -153,7 +153,6 @@ class FaceState extends State<Face>
   }
 
   sendPhoto() {
-    print(photos);
     ApiPresenter.face(this, {
       'images': photos.sublist(0, 2),
     }).saveFace();
