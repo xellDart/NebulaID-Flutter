@@ -27,11 +27,7 @@ class SponsorsDropDownState extends State<SponsorsDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    return new Theme(
-        data: Theme.of(context).copyWith(
-      canvasColor: Colors.white,
-    ),
-    child: new Container(
+    return new Container(
         color: Colors.white,
         width: widget.width,
         height: 45,
@@ -54,6 +50,6 @@ class SponsorsDropDownState extends State<SponsorsDropDown> {
                   setState(() {});
                 }),
           ),
-        )));
+        ));
   }
 }

@@ -109,9 +109,9 @@ class DocumentRegisterState extends State<DocumentRegister>
     else
       document = Text('');
     return new Scaffold(
+        resizeToAvoidBottomPadding: true,
         floatingActionButton: isComplete == true ? float : null,
         body: new Container(
-          width: double.infinity,
           child: new Column(
             children: <Widget>[
               new Padding(
