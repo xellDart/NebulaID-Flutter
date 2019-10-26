@@ -70,6 +70,7 @@ class ApiService implements Service {
         'secret': auth.secret,
       },
     );
+    print(response.data);
     return checkResponse(response)['access'];
   }
 }
