@@ -10,7 +10,7 @@ class ApiService implements Service {
   final Auth auth = NebulaId.auth;
 
   ApiService() {
-    dio.options.baseUrl = 'https://192.168.0.8:3020/v1/${auth.company}/';
+    dio.options.baseUrl = 'https://192.168.0.8:3020/v1/${auth.getCompany()}/';
     dio.options.connectTimeout = 10000;
     dio.options.receiveTimeout = 10000;
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =

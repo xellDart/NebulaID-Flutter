@@ -10,8 +10,11 @@ class Auth implements APIResult {
   static String token;
 
   Auth({this.company, this.encrypt, this.secret, this.user}) {
-    print(this.company);
     ApiPresenter.user(this).getToken();
+  }
+
+  String getCompany() {
+    return this.company;
   }
 
   Future<Map<String, String>> buildHeaders() async {
