@@ -3,9 +3,14 @@ import 'package:nebula_id/presenter/presenter.dart';
 import 'package:nebula_id/utils/storage.dart';
 
 class User implements APIResult {
+  Storage storage = new Storage();
 
-  User() {
+  createUser() {
     ApiPresenter.user(this).createUser();
+  }
+
+  Future<bool> hasUser() async {
+    return await storage.getString('uuid_nebula') != null;
   }
 
   @override
@@ -16,6 +21,6 @@ class User implements APIResult {
   @override
   void onResult(value) {
     print(value);
-    Storage().saveString('uuid_nebula', value as String);
+    storage.saveString('uuid_nebula', value as String);
   }
 }

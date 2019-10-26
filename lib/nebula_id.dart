@@ -17,7 +17,6 @@ class NebulaId {
         secret: secret,
         user: this.user);
     auth.setToken();
-    new User();
   }
 
   Widget faceUUID(

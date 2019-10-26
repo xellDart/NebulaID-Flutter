@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:nebula_id/presenter/presenter.dart';
+import 'package:nebula_id/user/user.dart';
 import 'package:nebula_id/utils/storage.dart';
 
 class Auth implements APIResult {
+  User data = User();
   final String company;
   final String encrypt;
   final String secret;
@@ -27,6 +29,10 @@ class Auth implements APIResult {
     return Storage().getString('uuid_nebula');
   }
 
+  _checkUser() async {
+    if(await data.hasUser())  data.createUser();
+  }
+
   @override
   void onError(DioError err) {
     print(err.message);
@@ -34,7 +40,7 @@ class Auth implements APIResult {
 
   @override
   void onResult(value) {
-    print(value);
     token = value;
+    _checkUser();
   }
 }
