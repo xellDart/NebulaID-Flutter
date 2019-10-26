@@ -42,8 +42,9 @@ class ApiService implements Service {
   @override
   Future<Map> validFace(Map data) async {
     Response response = await dio.post(
-      'facial_id_verify/${await auth.getUUID()}',
+      'facial_id_verify',
       data: jsonEncode(data),
+      queryParameters: {'uuid': await auth.getUUID()},
       options: Options(
         headers: await auth.buildHeaders(),
       ),
