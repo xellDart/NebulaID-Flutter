@@ -13,6 +13,7 @@ class NebulaId {
 
   NebulaId({this.company, this.secret, this.integration, this.user}) {
     auth = new Auth(company: company, encrypt: integration, secret: secret, user: this.user);
+    auth.setToken();
   }
 
   createUser(OnUser user) {

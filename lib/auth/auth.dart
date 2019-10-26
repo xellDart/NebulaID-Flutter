@@ -9,9 +9,9 @@ class Auth implements APIResult {
 
   static String token;
 
-  Auth({this.company, this.encrypt, this.secret, this.user}) {
-    ApiPresenter.user(this).getToken();
-  }
+  Auth({this.company, this.encrypt, this.secret, this.user});
+
+  setToken() => ApiPresenter.user(this).getToken();
 
   String getCompany() {
     return this.company;
