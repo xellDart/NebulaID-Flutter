@@ -30,7 +30,7 @@ class Auth implements APIResult {
   }
 
   _checkUser() async {
-    if(await data.hasUser())  data.createUser();
+    if(await data.hasUser()) data.createUser();
   }
 
   @override
@@ -40,7 +40,6 @@ class Auth implements APIResult {
 
   @override
   void onResult(value) {
-    print(value);
     token = value;
     _checkUser();
   }
