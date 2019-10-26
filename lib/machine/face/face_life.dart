@@ -27,9 +27,18 @@ class Face extends StatefulWidget {
   final OnResultFace resultFace;
   final List<List<Color>> colors;
 
-  Face({Key key,
-    this.title, this.subtitle, this.extra, this.toRight, this.toLeft, this.closeEyes, this.takePhoto, this.resultFace, this.colors
-  }) : super(key: key);
+  Face(
+      {Key key,
+      this.title,
+      this.subtitle,
+      this.extra,
+      this.toRight,
+      this.toLeft,
+      this.closeEyes,
+      this.takePhoto,
+      this.resultFace,
+      this.colors})
+      : super(key: key);
 
   @override
   FaceState createState() => FaceState();
@@ -124,8 +133,7 @@ class FaceState extends State<Face>
   }
 
   @override
-  void onResult(value) =>
-      widget.resultFace(value);
+  void onResult(value) => widget.resultFace(value);
 
   @override
   void onError(DioError err) {
@@ -148,12 +156,12 @@ class FaceState extends State<Face>
   }
 
   capture() => takePicture().then((String filePath) {
-    if (mounted)
-      setState(() {
-        imagePath = filePath;
+        if (mounted)
+          setState(() {
+            imagePath = filePath;
+          });
+        if (filePath != null) setCameraResult();
       });
-    if (filePath != null) setCameraResult();
-  });
 
   tap() async {
     if (isEyesClose) {
@@ -211,7 +219,7 @@ class FaceState extends State<Face>
 
   void setCameraResult() async {
     ImageProperties properties =
-    await FlutterNativeImage.getImageProperties(imagePath);
+        await FlutterNativeImage.getImageProperties(imagePath);
     File compressedFile = await FlutterNativeImage.compressImage(imagePath,
         quality: 90,
         targetWidth: 310,
@@ -258,75 +266,64 @@ class FaceState extends State<Face>
         ),
       );
     }
-    return new Scaffold(
-        appBar: AppBar(
-            brightness: Brightness.light,
-            centerTitle: true,
-            title: Text(widget.title,
-                style: TextStyle(
-                    color: Color(0xFF3178bd), fontWeight: FontWeight.w300)),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            iconTheme: IconThemeData(color: Color(0xFF3178bd)),
-            actions: []),
-        body: new Center(
-          child: new Column(
-            children: <Widget>[
-              new Padding(
-                  padding: EdgeInsets.only(
-                      left: 20.0, right: 20.0, bottom: 20.0, top: 20.0),
-                  child: Text(widget.subtitle,
-                      textAlign: TextAlign.center,
-                      style: new TextStyle(color: Colors.grey[700]))),
-              new Padding(
-                  padding: EdgeInsets.only(
-                      left: 20.0, right: 20.0, bottom: topHeight - 130),
-                  child: Text(onTextPress,
-                      textAlign: TextAlign.center,
-                      style: new TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.grey[700],
-                          fontWeight: FontWeight.w500))),
-              new Center(
-                child: new Container(
-                  height: topHeight,
-                  width: topHeight,
-                  child: new CustomPaint(
-                      foregroundPainter: new Circle(
-                          lineColor: actualBack,
-                          completeColor: actualFront,
-                          completePercent: percentage,
-                          width: 10.0),
-                      child: GestureDetector(
-                        onTap: controller != null &&
+    return new Center(
+      child: new Column(
+        children: <Widget>[
+          new Padding(
+              padding: EdgeInsets.only(
+                  left: 20.0, right: 20.0, bottom: 20.0, top: 20.0),
+              child: Text(widget.subtitle,
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(color: Colors.grey[700]))),
+          new Padding(
+              padding: EdgeInsets.only(
+                  left: 20.0, right: 20.0, bottom: topHeight - 130),
+              child: Text(onTextPress,
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.grey[700],
+                      fontWeight: FontWeight.w500))),
+          new Center(
+            child: new Container(
+              height: topHeight,
+              width: topHeight,
+              child: new CustomPaint(
+                  foregroundPainter: new Circle(
+                      lineColor: actualBack,
+                      completeColor: actualFront,
+                      completePercent: percentage,
+                      width: 10.0),
+                  child: GestureDetector(
+                    onTap: controller != null &&
                             controller.value.isInitialized &&
                             !controller.value.isRecordingVideo
-                            ? tap
-                            : null,
-                        child: cameraWidget(),
-                      )),
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: widget.extra,
-                            style: TextStyle(color: Colors.grey[700]))
-                      ],
-                    ),
-                  ))
-            ],
+                        ? tap
+                        : null,
+                    child: cameraWidget(),
+                  )),
+            ),
           ),
-        ));
+          Padding(
+              padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: widget.extra,
+                        style: TextStyle(color: Colors.grey[700]))
+                  ],
+                ),
+              ))
+        ],
+      ),
+    );
   }
 
   void runDetection(CameraImage image) async {
     final int numBytes =
-    image.planes.fold(0, (count, plane) => count += plane.bytes.length);
+        image.planes.fold(0, (count, plane) => count += plane.bytes.length);
     final Uint8List allBytes = Uint8List(numBytes);
 
     int nextIndex = 0;
@@ -346,10 +343,10 @@ class FaceState extends State<Face>
               rotation: ImageRotation.rotation270,
               planeData: image.planes
                   .map((plane) => FirebaseVisionImagePlaneMetadata(
-                bytesPerRow: plane.bytesPerRow,
-                height: plane.height,
-                width: plane.width,
-              ))
+                        bytesPerRow: plane.bytesPerRow,
+                        height: plane.height,
+                        width: plane.width,
+                      ))
                   .toList()),
         ),
       );
@@ -379,7 +376,8 @@ class FaceState extends State<Face>
           });
         }
       }
-    } else checkBiometricRotateRight(face);
+    } else
+      checkBiometricRotateRight(face);
   }
 
   // derecha
@@ -417,6 +415,4 @@ class FaceState extends State<Face>
       } catch (e) {}
     }
   }
-
-
 }
