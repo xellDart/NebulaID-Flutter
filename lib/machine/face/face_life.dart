@@ -26,6 +26,7 @@ class Face extends StatefulWidget {
   final String takePhoto;
   final OnResultFace resultFace;
   final List<List<Color>> colors;
+  final Widget bottom;
 
   Face(
       {Key key,
@@ -37,7 +38,8 @@ class Face extends StatefulWidget {
       this.closeEyes,
       this.takePhoto,
       this.resultFace,
-      this.colors})
+      this.colors,
+      this.bottom})
       : super(key: key);
 
   @override
@@ -261,9 +263,9 @@ class FaceState extends State<Face>
           'No Camera Found',
           style: TextStyle(
             fontSize: 16.0,
-            color: Colors.white,
-          ),
-        ),
+            color: Colors.white
+          )
+        )
       );
     }
     return new Center(
@@ -300,9 +302,9 @@ class FaceState extends State<Face>
                             !controller.value.isRecordingVideo
                         ? tap
                         : null,
-                    child: cameraWidget(),
-                  )),
-            ),
+                    child: cameraWidget()
+                  ))
+            )
           ),
           Padding(
               padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
@@ -313,9 +315,10 @@ class FaceState extends State<Face>
                     TextSpan(
                         text: widget.extra,
                         style: TextStyle(color: Colors.grey[700]))
-                  ],
-                ),
-              ))
+                  ]
+                )
+              )),
+          widget.bottom
         ],
       ),
     );
@@ -347,7 +350,7 @@ class FaceState extends State<Face>
                         height: plane.height,
                         width: plane.width,
                       ))
-                  .toList()),
+                  .toList())
         ),
       );
       if (faces.isNotEmpty) checkBiometricRotateLeft(faces[0]);

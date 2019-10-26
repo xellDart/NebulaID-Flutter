@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:nebula_id/auth/auth.dart';
 import 'package:nebula_id/model/service.dart';
+import 'package:nebula_id/nebula_id.dart';
 
 class ApiService implements Service {
   Dio dio = new Dio();
-  final Auth auth;
+  final Auth auth = NebulaId.auth;
 
-  ApiService({this.auth}) {
-    dio.options.baseUrl = 'https://www.craftinglbs.com/';
+  ApiService() {
+    dio.options.baseUrl = 'https://192.168.0.8:3020/v1/${auth.company}/';
     dio.options.connectTimeout = 10000;
     dio.options.receiveTimeout = 10000;
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
@@ -46,5 +47,28 @@ class ApiService implements Service {
       ),
     );
     return checkResponse(response);
+  }
+
+  @override
+  Future<String> createUser() async {
+    Response response = await dio.get(
+      'user',
+      options: Options(
+        headers: await auth.buildHeaders(),
+      ),
+    );
+    return checkResponse(response)['uuid'];
+  }
+
+  @override
+  Future<String> getToken() async {
+    Response response = await dio.get(
+      'public',
+      queryParameters: {
+        'user': auth.user,
+        'secret': auth.secret,
+      },
+    );
+    return checkResponse(response)['access'];
   }
 }

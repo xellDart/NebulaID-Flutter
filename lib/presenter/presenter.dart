@@ -12,8 +12,32 @@ class ApiPresenter {
   ApiService service;
   Map<String, dynamic> data;
 
+  ApiPresenter.user(this.result) {
+    service = new ApiService();
+  }
+
   ApiPresenter.face(this.result, this.data) {
     service = new ApiService();
+  }
+
+  void createUser() {
+    assert(result != null);
+    service
+        .createUser()
+        .then((response) => result.onResult(response))
+        .catchError((onError) {
+      result.onError(onError);
+    });
+  }
+
+  void getToken() {
+    assert(result != null);
+    service
+        .getToken()
+        .then((response) => result.onResult(response))
+        .catchError((onError) {
+      result.onError(onError);
+    });
   }
 
   void saveFace() {
