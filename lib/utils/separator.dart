@@ -10,6 +10,7 @@ class Separator extends StatelessWidget {
     return new Row(
       children: <Widget>[
         new Container(
+          width: double.infinity,
           height: 30.0,
           decoration: new BoxDecoration(
               color: Color(0xFFF8F8F8)
