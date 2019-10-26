@@ -23,10 +23,13 @@ class Auth implements APIResult {
   }
 
   @override
-  void onError(DioError err) {}
+  void onError(DioError err) {
+    print(err.message);
+  }
 
   @override
   void onResult(value) {
+    print(value);
     token = value;
   }
 }
