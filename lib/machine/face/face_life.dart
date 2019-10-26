@@ -139,6 +139,7 @@ class FaceState extends State<Face>
 
   @override
   void onError(DioError err) {
+    print(err.message);
     //err.response.data['message']
   }
 
