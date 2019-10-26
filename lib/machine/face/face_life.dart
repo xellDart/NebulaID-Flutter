@@ -17,7 +17,6 @@ import 'package:vibration/vibration.dart';
 typedef OnResultFace(String uuid);
 
 class Face extends StatefulWidget {
-  final List<CameraDescription> cameras;
   final String title;
   final String subtitle;
   final String extra;
@@ -29,7 +28,7 @@ class Face extends StatefulWidget {
   final List<List<Color>> colors;
 
   Face({Key key,
-    this.cameras, this.title, this.subtitle, this.extra, this.toRight, this.toLeft, this.closeEyes, this.takePhoto, this.resultFace, this.colors
+    this.title, this.subtitle, this.extra, this.toRight, this.toLeft, this.closeEyes, this.takePhoto, this.resultFace, this.colors
   }) : super(key: key);
 
   @override
@@ -66,6 +65,8 @@ class FaceState extends State<Face>
   CameraController controller;
   String imagePath;
 
+  List<CameraDescription> cameras;
+
   final FaceDetector detector = FirebaseVision.instance.faceDetector(
     FaceDetectorOptions(
       enableClassification: true,
@@ -76,6 +77,12 @@ class FaceState extends State<Face>
   @override
   void initState() {
     super.initState();
+    init();
+  }
+
+  init() async {
+    cameras = await availableCameras();
+    onCameraSelected(cameras[1]);
     setState(() {
       percentage = 0.0;
       colorsCircle = widget.colors;
@@ -89,7 +96,6 @@ class FaceState extends State<Face>
         });
       });
     WidgetsBinding.instance.addObserver(this);
-    onCameraSelected(widget.cameras[1]);
   }
 
   initText() {
@@ -112,7 +118,7 @@ class FaceState extends State<Face>
       controller?.dispose();
     } else if (state == AppLifecycleState.resumed) {
       if (controller != null) {
-        onCameraSelected(widget.cameras[1]);
+        onCameraSelected(cameras[1]);
       }
     }
   }
@@ -239,7 +245,7 @@ class FaceState extends State<Face>
       });
 
     double topHeight = MediaQuery.of(context).size.height / 3.8;
-    if (widget.cameras.isEmpty) {
+    if (cameras.isEmpty) {
       return Container(
         alignment: Alignment.center,
         padding: EdgeInsets.all(16.0),

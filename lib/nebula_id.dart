@@ -17,10 +17,8 @@ class NebulaId {
       String takePhoto,
       OnResultFace resultFace,
       List<List<Color>> colors) async {
-    final cameras = await availableCameras();
     return new Face(
       title: title,
-      cameras: cameras,
       subtitle: subtitle,
       extra: extra,
       toRight: toRight,
