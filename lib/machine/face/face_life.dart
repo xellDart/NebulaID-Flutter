@@ -163,7 +163,7 @@ class FaceState extends State<Face>
   sendPhoto() {
     _dialogState = DialogState.LOADING;
     ApiPresenter.face(this, {
-      'images': photos.sublist(0, 2),
+      'images': photos.sublist(0, 1),
     }).saveFace();
   }
 

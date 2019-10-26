@@ -22,7 +22,7 @@ class LoadingDialog extends StatelessWidget {
       ),
       content: Container(
         width: 250.0,
-        height: 100.0,
+        height: 80.0,
         child: state == DialogState.LOADING
             ? Row(
           mainAxisAlignment: MainAxisAlignment.center,
