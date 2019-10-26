@@ -34,7 +34,7 @@ class SponsorsDropDownState extends State<SponsorsDropDown> {
         ),
         child: new Container(
             color: Colors.white,
-            width: widget.width,
+            width: double.infinity,
             height: 45,
             child: new Padding(
               padding: EdgeInsets.all(6.0),
