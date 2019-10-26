@@ -111,7 +111,7 @@ class FaceState extends State<Face>
     toRight = widget.toRight;
     toLeft = widget.toLeft;
     closeEyes = widget.closeEyes;
-    takeImage = this.takeImage;
+    takeImage = widget.takePhoto;
   }
 
   @override
@@ -358,7 +358,6 @@ class FaceState extends State<Face>
     }
   }
 
-  // izquierda
   checkBiometricRotateLeft(face) {
     if (!isFaceAngleLeftDone) {
       if (Platform.isIOS) {
@@ -380,7 +379,6 @@ class FaceState extends State<Face>
       checkBiometricRotateRight(face);
   }
 
-  // derecha
   checkBiometricRotateRight(face) {
     if (!isFaceAngleRightDone) {
       if (Platform.isIOS) {
