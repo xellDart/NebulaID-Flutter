@@ -10,7 +10,9 @@ class User implements APIResult {
   }
 
   Future<bool> hasUser() async {
-    return await storage.getString('uuid_nebula') != null;
+    String uuid = await storage.getString('uuid_nebula');
+    print(uuid);
+    return uuid != null;
   }
 
   @override

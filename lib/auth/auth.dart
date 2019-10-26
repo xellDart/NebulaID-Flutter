@@ -40,6 +40,7 @@ class Auth implements APIResult {
 
   @override
   void onResult(value) {
+    print(value);
     token = value;
     _checkUser();
   }
