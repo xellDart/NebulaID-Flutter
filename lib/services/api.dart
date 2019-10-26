@@ -30,8 +30,9 @@ class ApiService implements Service {
   saveFace(Map data) async {
     print(await auth.getUUID());
     Response response = await dio.post(
-      'facial_id/${await auth.getUUID()}',
+      'facial_id',
       data: jsonEncode(data),
+      queryParameters: {'uuid': await auth.getUUID()},
       options: Options(
         headers: await auth.buildHeaders(),
       ),
