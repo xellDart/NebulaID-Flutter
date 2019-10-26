@@ -21,7 +21,7 @@ class Auth implements APIResult {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
-      'Integration': encrypt
+      'integrity': encrypt
     };
   }
 
