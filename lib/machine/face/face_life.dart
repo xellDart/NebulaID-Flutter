@@ -140,8 +140,11 @@ class FaceState extends State<Face>
   @override
   void onResult(value) {
     setState(() => _dialogState = DialogState.COMPLETED);
-    Timer(Duration(seconds: 3), () => setState(() => _dialogState = DialogState.DISMISSED));
-    widget.resultFace();
+    Timer(Duration(seconds: 3), () => setState(() {
+      _dialogState = DialogState.DISMISSED;
+      widget.resultFace();
+    }));
+
   }
 
   @override
