@@ -29,7 +29,7 @@ class ApiService implements Service {
   @override
   saveFace(Map data) async {
     Response response = await dio.post(
-      'facial_id',
+      'facial_id/${await auth.getUUID()}',
       data: jsonEncode(data),
       options: Options(
         headers: await auth.buildHeaders(),
@@ -41,7 +41,7 @@ class ApiService implements Service {
   @override
   Future<Map> validFace(Map data) async {
     Response response = await dio.post(
-      'facial_id_verify',
+      'facial_id_verify/${await auth.getUUID()}',
       data: jsonEncode(data),
       options: Options(
         headers: await auth.buildHeaders(),

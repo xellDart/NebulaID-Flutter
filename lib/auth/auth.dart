@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:nebula_id/presenter/presenter.dart';
+import 'package:nebula_id/utils/storage.dart';
 
 class Auth implements APIResult {
   final String company;
@@ -20,6 +21,10 @@ class Auth implements APIResult {
       'Authorizathion': 'Bearer $token',
       'Integration': encrypt
     };
+  }
+
+  Future<String> getUUID() {
+    return Storage().getString('uuid_nebula');
   }
 
   @override

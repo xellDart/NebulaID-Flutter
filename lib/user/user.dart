@@ -1,23 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:nebula_id/presenter/presenter.dart';
-
-typedef OnUser(String result);
+import 'package:nebula_id/utils/storage.dart';
 
 class User implements APIResult {
 
-  final OnUser result;
-
-  User({this.result}) {
+  User() {
     ApiPresenter.user(this).createUser();
   }
 
   @override
   void onError(DioError err) {
-    result(err.message);
+    print(err.message);
   }
 
   @override
   void onResult(value) {
-    result(value as String);
+    print(value);
+    Storage().saveString('uuid_nebula', value as String);
   }
 }
