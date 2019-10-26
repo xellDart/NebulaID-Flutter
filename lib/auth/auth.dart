@@ -13,10 +13,6 @@ class Auth implements APIResult {
 
   setToken() => ApiPresenter.user(this).getToken();
 
-  String getCompany() {
-    return this.company;
-  }
-
   Future<Map<String, String>> buildHeaders() async {
     return {
       'Content-Type': 'application/json',
