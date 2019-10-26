@@ -3,6 +3,8 @@ import 'package:nebula_id/auth/auth.dart';
 import 'package:nebula_id/machine/face/face_life.dart';
 import 'package:nebula_id/user/user.dart';
 
+import 'machine/documents/select_document.dart';
+
 class NebulaId {
   final String company;
   final String secret;
@@ -17,6 +19,11 @@ class NebulaId {
         secret: secret,
         user: this.user);
     auth.setToken();
+  }
+
+  Widget analyzeDocument(String next, String title, Color buttonColor) {
+    return new DocumentRegister(
+        next: next, title: title, buttonColor: buttonColor);
   }
 
   Widget faceUUID(

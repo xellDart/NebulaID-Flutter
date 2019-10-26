@@ -75,4 +75,19 @@ class ApiService implements Service {
     );
     return checkResponse(response)['access'];
   }
+
+  @override
+  saveCountry(Map data) async {
+    Response response = await dio.post(
+      'country',
+      data: jsonEncode(data),
+      queryParameters: {'uuid': await auth.getUUID()},
+      options: Options(
+        headers: await auth.buildHeaders(),
+      ),
+    );
+    checkResponse(response);
+    return;
+  }
+
 }

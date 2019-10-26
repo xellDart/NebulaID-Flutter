@@ -20,6 +20,10 @@ class ApiPresenter {
     service = new ApiService();
   }
 
+  ApiPresenter.country(this.result, this.data) {
+    service = new ApiService();
+  }
+
   void createUser() {
     assert(result != null);
     service
@@ -54,6 +58,16 @@ class ApiPresenter {
     assert(result != null);
     service
         .validFace(data)
+        .then((response) => result.onResult(response))
+        .catchError((onError) {
+      result.onError(onError);
+    });
+  }
+
+  void setCountry() {
+    assert(result != null);
+    service
+        .saveCountry(data)
         .then((response) => result.onResult(response))
         .catchError((onError) {
       result.onError(onError);

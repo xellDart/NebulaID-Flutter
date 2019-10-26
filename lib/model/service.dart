@@ -3,4 +3,5 @@ abstract class Service {
   Future<String> createUser();
   Future<Map> validFace(Map data);
   Future<String> getToken();
+  saveCountry(Map data);
 }

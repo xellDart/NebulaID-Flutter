@@ -14,6 +14,8 @@ dependencies:
   vibration: 1.2.2
   path_provider: ^1.4.0
   shared_preferences: ^0.5.3+4
+  after_layout: ^1.0.7+2
+  image_picker: ^0.6.1+8
   camera: ^0.5.6+1
   random_string: ^1.1.0
   dio: ^2.1.16
