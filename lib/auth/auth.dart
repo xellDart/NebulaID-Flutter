@@ -30,7 +30,9 @@ class Auth implements APIResult {
   }
 
   _checkUser() async {
-    if(await data.hasUser()) data.createUser();
+    bool has = await data.hasUser();
+    print(has);
+    if(!has) data.createUser();
   }
 
   @override
