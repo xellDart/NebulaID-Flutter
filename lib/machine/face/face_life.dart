@@ -14,7 +14,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:random_string/random_string.dart';
 import 'package:vibration/vibration.dart';
 
-typedef OnResultFace(String uuid);
+typedef OnResultFace();
 
 class Face extends StatefulWidget {
   final String title;
@@ -135,7 +135,7 @@ class FaceState extends State<Face>
   }
 
   @override
-  void onResult(value) => widget.resultFace(value);
+  void onResult(value) => widget.resultFace();
 
   @override
   void onError(DioError err) {
