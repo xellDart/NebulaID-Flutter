@@ -10,7 +10,7 @@ class AnaliseDocument implements APIResult {
   AnaliseDocument({this.document, this.finish});
 
   processDocument(List<String> images, String type, String country) {
-    ApiPresenter.face(this,
+    ApiPresenter.document(this,
             new Map.from({'type': type, 'country': country, 'images': images}))
         .analiseDocument();
   }
