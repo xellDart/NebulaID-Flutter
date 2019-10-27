@@ -81,7 +81,7 @@ class ApiPresenter {
   void analiseDocument() {
     assert(result != null);
     service
-        .saveCountry(data)
+        .analiseDocument(data)
         .then(() => result.onResult(null))
         .catchError((onError) {
       result.onError(onError);
