@@ -11,7 +11,7 @@ class ApiService implements Service {
 
   ApiService() {
     auth = NebulaId.auth;
-    dio.options.baseUrl = 'http://192.168.0.8:3020/v1/${auth.company}/';
+    dio.options.baseUrl = 'http://18.219.30.186:3020/v1/${auth.company}/';
     dio.options.connectTimeout = 10000;
     dio.options.receiveTimeout = 10000;
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
@@ -105,7 +105,7 @@ class ApiService implements Service {
   @override
   Future<Map> getDocument() async {
     Response response = await dio.get(
-      'document',
+      'data',
       queryParameters: {'uuid': await auth.getUUID()},
       options: Options(
         headers: await auth.buildHeaders()
