@@ -25,8 +25,8 @@ class Auth implements APIResult {
     };
   }
 
-  Future<String> getUUID() {
-    return Storage().getString('uuid_nebula');
+  Future<String> getUUID() async {
+    return await Storage().getString('uuid_nebula');
   }
 
   _checkUser() async {

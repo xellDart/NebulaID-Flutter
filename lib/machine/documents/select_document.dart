@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:nebula_id/presenter/presenter.dart';
+import 'package:nebula_id/utils/storage.dart';
 
 typedef OnFinish();
 typedef OnDocument(Map document);
@@ -15,8 +16,10 @@ class AnaliseDocument implements APIResult {
         .analiseDocument();
   }
 
-  getDocument() {
-    ApiPresenter.document(this, null).getDocument();
+  getDocument() async {
+    if(await Storage().getString('uuid_nebula') != null)
+      ApiPresenter.document(this, null).getDocument();
+    else document(null);
   }
 
   @override
