@@ -21,7 +21,7 @@ class AnaliseDocument implements APIResult {
 
   @override
   void onError(DioError err) {
-    print(err.message);
+    document(null);
   }
 
   @override
