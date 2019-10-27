@@ -82,7 +82,7 @@ class ApiPresenter {
     assert(result != null);
     service
         .analiseDocument(data)
-        .then(() => result.onResult(null))
+        .then(() => result.onResult('analise'))
         .catchError((onError) {
       result.onError(onError);
     });

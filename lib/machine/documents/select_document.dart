@@ -26,7 +26,8 @@ class AnaliseDocument implements APIResult {
 
   @override
   void onResult(value) {
-    if (value == null)
+    print(value);
+    if (value == 'analise')
       finish();
     else
       document(value);
