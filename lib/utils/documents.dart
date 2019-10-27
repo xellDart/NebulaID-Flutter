@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:nebula_id/utils/storage.dart';
 
 class FilterDocument {
-  BuildContext context;
-
-  FilterDocument({this.context});
 
   final shared = new Storage();
 
@@ -13,11 +9,13 @@ class FilterDocument {
     final documents = [
       {
         'country': 'Mexico',
-        'documents': ['INE']
+        'documents': ['INE'],
+        'back': true
       },
       {
         'country': 'EUA',
-        'documents': ['Passport']
+        'documents': ['Passport'],
+        'back': false
       }
     ];
     if (country == null && currentDocument == null) return documents;

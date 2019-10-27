@@ -86,8 +86,32 @@ class ApiService implements Service {
         headers: await auth.buildHeaders(),
       ),
     );
-    checkResponse(response);
-    return;
+    return checkResponse(response);
+  }
+
+  @override
+  analiseDocument(Map data) async {
+    Response response = await dio.post(
+      'document',
+      data: jsonEncode(data),
+      queryParameters: {'uuid': await auth.getUUID()},
+      options: Options(
+          headers: await auth.buildHeaders(),
+    ),
+    );
+    return checkResponse(response);
+  }
+
+  @override
+  Future<Map> getDocument() async {
+    Response response = await dio.get(
+      'document',
+      queryParameters: {'uuid': await auth.getUUID()},
+      options: Options(
+        headers: await auth.buildHeaders()
+      ),
+    );
+    return checkResponse(response);
   }
 
 }

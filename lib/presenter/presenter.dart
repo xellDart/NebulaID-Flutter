@@ -24,6 +24,10 @@ class ApiPresenter {
     service = new ApiService();
   }
 
+  ApiPresenter.document(this.result, this.data) {
+    service = new ApiService();
+  }
+
   void createUser() {
     assert(result != null);
     service
@@ -68,6 +72,26 @@ class ApiPresenter {
     assert(result != null);
     service
         .saveCountry(data)
+        .then((response) => result.onResult(response))
+        .catchError((onError) {
+      result.onError(onError);
+    });
+  }
+
+  void analiseDocument() {
+    assert(result != null);
+    service
+        .saveCountry(data)
+        .then(() => result.onResult(null))
+        .catchError((onError) {
+      result.onError(onError);
+    });
+  }
+
+  void getDocument() {
+    assert(result != null);
+    service
+        .getDocument()
         .then((response) => result.onResult(response))
         .catchError((onError) {
       result.onError(onError);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nebula_id/auth/auth.dart';
 import 'package:nebula_id/machine/face/face_life.dart';
 import 'package:nebula_id/user/user.dart';
+import 'package:nebula_id/utils/documents.dart';
 
 import 'machine/documents/select_document.dart';
 
@@ -21,9 +22,16 @@ class NebulaId {
     auth.setToken();
   }
 
-  Widget analyzeDocument(String next, String title, Color buttonColor) {
-    return new DocumentRegister(
-        next: next, title: title, buttonColor: buttonColor);
+  Future<List<Map>> getDocuments() async {
+    return await FilterDocument().getList(null, null);
+  }
+
+  analiseDocuments(List<String> images, String type, String country, OnFinish finish) async {
+    AnaliseDocument(finish: finish).processDocument(images, type, country);
+  }
+
+  getDocument(OnDocument document) async {
+    AnaliseDocument(document: document).getDocument();
   }
 
   Widget faceUUID(
