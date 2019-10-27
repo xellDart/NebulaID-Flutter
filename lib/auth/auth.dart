@@ -9,10 +9,11 @@ class Auth implements APIResult {
   final String encrypt;
   final String secret;
   final String user;
+  final OnStart start;
 
   static String token;
 
-  Auth({this.company, this.encrypt, this.secret, this.user});
+  Auth({this.company, this.encrypt, this.secret, this.user, this.start});
 
   setToken() => ApiPresenter.user(this).getToken();
 
@@ -32,6 +33,7 @@ class Auth implements APIResult {
   _checkUser() async {
     bool has = await data.hasUser();
     if(!has) data.createUser();
+    start();
   }
 
   @override
