@@ -26,11 +26,11 @@ class NebulaId {
     return await FilterDocument().getList(null, null);
   }
 
-  analiseDocuments(List<String> images, String type, String country, OnFinish finish) async {
+  analiseDocuments(List<String> images, String type, String country, OnFinish finish) {
     AnaliseDocument(finish: finish).processDocument(images, type, country);
   }
 
-  getDocument(OnDocument document) async {
+  getDocument(OnDocument document) {
     AnaliseDocument(document: document).getDocument();
   }
 
