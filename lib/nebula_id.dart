@@ -31,6 +31,7 @@ class NebulaId {
 
   getToken() {
     auth = new Auth(
+        nebula: nebula,
         company: this._company,
         encrypt: this._integration,
         secret: this._secret,
@@ -38,8 +39,7 @@ class NebulaId {
     auth.getToken();
   }
 
-  createAccess(String uuid) =>
-    access = new Access(uuid);
+  createAccess(String uuid) => access = new Access(uuid);
 
   Future<List<Map>> getDocuments() async {
     return await FilterDocument().getList();
