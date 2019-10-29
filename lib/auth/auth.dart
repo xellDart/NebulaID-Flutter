@@ -34,5 +34,8 @@ class Auth implements APIResult {
   void onError(DioError err) => nebula.onError(err.message);
 
   @override
-  void onResult(value) => _token = value.toString();
+  void onResult(value) {
+    _token = value.toString();
+    nebula.onToken(_token);
+  }
 }
