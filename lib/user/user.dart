@@ -1,28 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:nebula_id/model/nebula.dart';
 import 'package:nebula_id/presenter/presenter.dart';
 import 'package:nebula_id/utils/storage.dart';
 
+typedef OnUUID(String uuid);
+
 class User implements APIResult {
+  Nebula onUUID;
   Storage storage = new Storage();
 
-  createUser() {
-    ApiPresenter.user(this).createUser();
-  }
+  User(this.onUUID);
 
-  Future<bool> hasUser() async {
-    String uuid = await storage.getString('uuid_nebula');
-    if(uuid == null) return false;
-    return true;
-  }
+  createUser() => ApiPresenter.user(this).createUser();
 
   @override
-  void onError(DioError err) {
-    print(err.message);
-  }
+  void onError(DioError err) => onUUID.onResult(err.message);
 
   @override
-  void onResult(value) {
-    print(value);
-    storage.saveString('uuid_nebula', value as String);
-  }
+  void onResult(value) => onUUID.onUUID(value.toString());
 }
