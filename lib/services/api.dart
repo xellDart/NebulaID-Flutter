@@ -111,6 +111,7 @@ class ApiService implements Service {
       queryParameters: {'uuid': _access.uuid},
       options: Options(headers: await _auth.buildHeaders()),
     );
+    print(response.data);
     return checkResponse(response);
   }
 }
