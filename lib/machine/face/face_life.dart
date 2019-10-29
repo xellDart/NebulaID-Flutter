@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:nebula_id/alerts/loading.dart';
+import 'package:nebula_id/model/nebula.dart';
 import 'package:nebula_id/paints/circle.dart';
 import 'package:nebula_id/presenter/presenter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,8 +16,6 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:random_string/random_string.dart';
 import 'package:vibration/vibration.dart';
 
-typedef OnResultFace();
-
 class Face extends StatefulWidget {
   final String title;
   final String subtitle;
@@ -25,9 +24,9 @@ class Face extends StatefulWidget {
   final String toLeft;
   final String closeEyes;
   final String takePhoto;
-  final OnResultFace resultFace;
   final List<List<Color>> colors;
   final Widget bottom;
+  final Nebula nebula;
 
   Face(
       {Key key,
@@ -38,9 +37,9 @@ class Face extends StatefulWidget {
       this.toLeft,
       this.closeEyes,
       this.takePhoto,
-      this.resultFace,
       this.colors,
-      this.bottom})
+      this.bottom,
+      this.nebula})
       : super(key: key);
 
   @override
@@ -142,7 +141,7 @@ class FaceState extends State<Face>
     setState(() => _dialogState = DialogState.COMPLETED);
     Timer(Duration(seconds: 3), () => setState(() {
       _dialogState = DialogState.DISMISSED;
-      widget.resultFace();
+      widget.nebula.onResult('done');
     }));
 
   }
@@ -150,8 +149,7 @@ class FaceState extends State<Face>
   @override
   void onError(DioError err) {
     Timer(Duration(seconds: 3), () => setState(() => _dialogState = DialogState.DISMISSED));
-    print(err.message);
-    //err.response.data['message']
+    widget.nebula.onError(err.response.data['message']);
   }
 
   Widget cameraWidget() {

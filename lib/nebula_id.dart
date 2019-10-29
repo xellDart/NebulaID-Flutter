@@ -58,7 +58,6 @@ class NebulaId {
       String toLeft,
       String closeEyes,
       String takePhoto,
-      OnResultFace resultFace,
       Widget bottom,
       List<List<Color>> colors) {
     return new Face(
@@ -69,7 +68,7 @@ class NebulaId {
         toLeft: toLeft,
         closeEyes: closeEyes,
         takePhoto: takePhoto,
-        resultFace: resultFace,
+        nebula: nebula,
         colors: colors,
         bottom: bottom);
   }
