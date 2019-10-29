@@ -46,9 +46,9 @@ class NebulaId {
   }
 
   analiseDocuments(List<String> images, String type, String country) =>
-      AnaliseDocument().processDocument(images, type, country);
+      AnaliseDocument(nebula: nebula).processDocument(images, type, country);
 
-  getDocument() => AnaliseDocument().getDocument();
+  getDocument() => AnaliseDocument(nebula: nebula).getDocument();
 
   Widget faceUUID(
       String title,
