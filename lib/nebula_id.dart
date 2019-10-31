@@ -41,15 +41,17 @@ class NebulaId {
 
   createAccess(String uuid) => access = new Access(uuid);
 
-  Future<List<Map>> getDocuments(
-      OnDocumentGet onDocumentGet, OnDocumentError onDocumentError) async {
+  Future<List<Map>> getDocuments() async {
     return await FilterDocument().getList();
   }
 
-  analiseDocuments(List<String> images, String type, String country, OnDocumentSaved onDocumentSaved) =>
-      AnaliseDocument(nebula: nebula).processDocument(images, type, country);
+  analiseDocuments(List<String> images, String type, String country,
+          OnDocumentSaved onDocumentSaved, OnDocumentError onDocumentError) =>
+      AnaliseDocument(nebula: nebula, saved: onDocumentSaved, error: onDocumentError)
+          .processDocument(images, type, country);
 
-  getDocument() => AnaliseDocument(nebula: nebula).getDocument();
+  getDocument(OnDocumentGet onDocumentGet, OnDocumentError onDocumentError) =>
+      AnaliseDocument(nebula: nebula, get: onDocumentGet, error: onDocumentError).getDocument();
 
   Widget faceUUID(
       String title,
@@ -61,7 +63,8 @@ class NebulaId {
       String takePhoto,
       Widget bottom,
       List<List<Color>> colors,
-      OnFaceDone onFaceDone) {
+      OnFaceDone onFaceDone,
+      OnFaceError onFaceError) {
     return new Face(
         title: title,
         subtitle: subtitle,
@@ -71,6 +74,8 @@ class NebulaId {
         closeEyes: closeEyes,
         takePhoto: takePhoto,
         nebula: nebula,
+        done: onFaceDone,
+        error: onFaceError,
         colors: colors,
         bottom: bottom);
   }
