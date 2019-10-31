@@ -16,6 +16,9 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:random_string/random_string.dart';
 import 'package:vibration/vibration.dart';
 
+typedef OnFaceDone();
+typedef OnFaceError(String error);
+
 class Face extends StatefulWidget {
   final String title;
   final String subtitle;
@@ -27,6 +30,8 @@ class Face extends StatefulWidget {
   final List<List<Color>> colors;
   final Widget bottom;
   final Nebula nebula;
+  final OnFaceDone done;
+  final OnFaceError error;
 
   Face(
       {Key key,
@@ -39,7 +44,9 @@ class Face extends StatefulWidget {
       this.takePhoto,
       this.colors,
       this.bottom,
-      this.nebula})
+      this.nebula,
+      this.done,
+      this.error})
       : super(key: key);
 
   @override
@@ -141,7 +148,7 @@ class FaceState extends State<Face>
     setState(() => _dialogState = DialogState.COMPLETED);
     Timer(Duration(seconds: 3), () => setState(() {
       _dialogState = DialogState.DISMISSED;
-      widget.nebula.onResult('done');
+      widget.done();
     }));
 
   }
@@ -149,7 +156,7 @@ class FaceState extends State<Face>
   @override
   void onError(DioError err) {
     Timer(Duration(seconds: 3), () => setState(() => _dialogState = DialogState.DISMISSED));
-    widget.nebula.onError(err.response.data['message']);
+    widget.error(err.response.data['message']);
   }
 
   Widget cameraWidget() {

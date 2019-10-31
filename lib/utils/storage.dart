@@ -1,10 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Storage {
-  saveString(key, value) async {
-    var pref = await SharedPreferences.getInstance();
-    pref.setString(key, value);
-  }
+
   saveBool(key, value) async {
     var pref = await SharedPreferences.getInstance();
     pref.setBool(key, value);
@@ -16,10 +13,6 @@ class Storage {
   deleteBool(key) async {
     var pref = await SharedPreferences.getInstance();
     pref.remove(key);
-  }
-  Future<String> getString(key) async {
-    var pref = await SharedPreferences.getInstance();
-    return pref.getString(key) ?? null;
   }
   Future<bool> getBool(key) async {
     var pref = await SharedPreferences.getInstance();
