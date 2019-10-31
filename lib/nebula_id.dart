@@ -41,11 +41,12 @@ class NebulaId {
 
   createAccess(String uuid) => access = new Access(uuid);
 
-  Future<List<Map>> getDocuments() async {
+  Future<List<Map>> getDocuments(
+      OnDocumentGet onDocumentGet, OnDocumentError onDocumentError) async {
     return await FilterDocument().getList();
   }
 
-  analiseDocuments(List<String> images, String type, String country) =>
+  analiseDocuments(List<String> images, String type, String country, OnDocumentSaved onDocumentSaved) =>
       AnaliseDocument(nebula: nebula).processDocument(images, type, country);
 
   getDocument() => AnaliseDocument(nebula: nebula).getDocument();
@@ -59,7 +60,8 @@ class NebulaId {
       String closeEyes,
       String takePhoto,
       Widget bottom,
-      List<List<Color>> colors) {
+      List<List<Color>> colors,
+      OnFaceDone onFaceDone) {
     return new Face(
         title: title,
         subtitle: subtitle,
