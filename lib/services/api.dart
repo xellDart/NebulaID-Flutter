@@ -17,12 +17,6 @@ class ApiService implements Service {
     dio.options.baseUrl = 'http://18.219.30.186:3020/v1/${_auth.company}/';
     dio.options.connectTimeout = 10000;
     dio.options.receiveTimeout = 10000;
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
   }
 
   dynamic checkResponse(response) {
