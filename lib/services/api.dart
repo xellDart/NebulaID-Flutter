@@ -5,6 +5,7 @@ import 'package:nebula_id/auth/auth.dart';
 import 'package:nebula_id/model/nebula.dart';
 import 'package:nebula_id/model/service.dart';
 import 'package:nebula_id/nebula_id.dart';
+import 'package:retry/retry.dart';
 
 class ApiService implements Service {
   Dio dio = new Dio();
@@ -15,8 +16,6 @@ class ApiService implements Service {
     _access = NebulaId.access;
     _auth = NebulaId.auth;
     dio.options.baseUrl = 'http://18.219.30.186:3020/v1/${_auth.company}/';
-    dio.options.connectTimeout = 10000;
-    dio.options.receiveTimeout = 10000;
   }
 
   dynamic checkResponse(response) {
@@ -62,12 +61,15 @@ class ApiService implements Service {
 
   @override
   Future<String> getToken() async {
-    Response response = await dio.get(
+    final Response response = await retry(
+      () async => dio.get(
       'public',
       queryParameters: {
         'user': _auth.user,
         'secret': _auth.secret,
       },
+    ).timeout(Duration(seconds: 5)),
+      retryIf: (e) => e is TimeoutException,
     );
     return checkResponse(response)['access'];
   }
@@ -100,10 +102,13 @@ class ApiService implements Service {
 
   @override
   Future<Map> getDocument() async {
-    Response response = await dio.get(
+    final Response response = await retry(
+      () async => dio.get(
       'data',
       queryParameters: {'uuid': _access.uuid},
       options: Options(headers: await _auth.buildHeaders()),
+    ).timeout(Duration(seconds: 5)),
+      retryIf: (e) => e is TimeoutException,
     );
     return checkResponse(response);
   }
