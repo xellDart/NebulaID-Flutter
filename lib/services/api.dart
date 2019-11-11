@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:nebula_id/auth/auth.dart';
 import 'package:nebula_id/model/nebula.dart';
