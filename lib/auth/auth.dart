@@ -9,7 +9,7 @@ class Auth implements APIResult {
   final String user;
   final String uuid;
   final Nebula nebula;
-  static String _token;
+  static String _token = '';
 
   Auth(
       {this.company,
@@ -21,14 +21,12 @@ class Auth implements APIResult {
 
   getToken() => ApiPresenter.user(this).getToken();
 
-  Future<Map<String, String>> buildHeaders() async {
-    return {
+  Future<Map<String, String>> buildHeaders() async => {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $_token',
       'integrity': encrypt
     };
-  }
 
   @override
   void onError(DioError err) => nebula.onError(err.message);

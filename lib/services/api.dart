@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:async';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 import 'package:nebula_id/auth/auth.dart';
 import 'package:nebula_id/model/nebula.dart';
 import 'package:nebula_id/model/service.dart';
@@ -26,28 +24,11 @@ class ApiService implements Service {
         retryInterval: const Duration(seconds: 5),
       ),
     ));
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
   }
 
-  Future<dynamic> _get({@required String method, Map query}) async {
-    Response response = await dio.get(method,
-        queryParameters: query,
-        options: Options(
-          headers: await _auth.buildHeaders(),
-        ));
-    return response.data;
-  }
-
-  Future<dynamic> _post(
-      {@required String method, @required Map data, Map query}) async {
-    Response response = await dio.post(method,
-        queryParameters: query,
-        data: jsonEncode(data),
+  @override
+  saveFace(Map data) async {
+    Response response = await dio.post('facial_id', data: data, queryParameters: {'uuid': _access.uuid},
         options: Options(
           headers: await _auth.buildHeaders(),
         ));
@@ -55,31 +36,56 @@ class ApiService implements Service {
   }
 
   @override
-  saveFace(Map data) async => await _post(
-      method: 'facial_id', data: data, query: {'uuid': _access.uuid});
+  Future<Map> validFace(Map data) async {
+    Response response = await dio.post('facial_id_verify', data: data, queryParameters: {'uuid': _access.uuid},
+        options: Options(
+          headers: await _auth.buildHeaders(),
+        ));
+    return response.data;
+  }
 
   @override
-  Future<Map> validFace(Map data) async => await _post(
-      method: 'facial_id_verify', data: data, query: {'uuid': _access.uuid});
+  Future<String> createUser() async {
+    Response response = await dio.get('user', queryParameters: {'uuid': _access.uuid},
+        options: Options(
+          headers: await _auth.buildHeaders(),
+        ));
+    return response.data['uuid'];
+  }
 
   @override
-  Future<String> createUser() async => (await _get(method: 'user'))['uuid'];
+  Future<String> getToken() async {
+    Response response = await dio.get('public', queryParameters: {
+      'user': _auth.user,
+      'secret': _auth.secret,
+    });
+    return response.data['access'];
+  }
 
   @override
-  Future<String> getToken() async => (await _get(method: 'public', query: {
-        'user': _auth.user,
-        'secret': _auth.secret,
-      }))['access'];
+  saveCountry(Map data) async {
+    Response response = await dio.post('country', data: data, queryParameters: {'uuid': _access.uuid},
+        options: Options(
+          headers: await _auth.buildHeaders(),
+        ));
+    return response.data;
+  }
 
   @override
-  saveCountry(Map data) async =>
-      await _post(method: 'country', data: data, query: {'uuid': _access.uuid});
+  analiseDocument(Map data) async {
+    Response response = await dio.post('document', data: data, queryParameters: {'uuid': _access.uuid},
+        options: Options(
+          headers: await _auth.buildHeaders(),
+        ));
+    return response.data;
+  }
 
   @override
-  analiseDocument(Map data) async => await _post(
-      method: 'document', data: data, query: {'uuid': _access.uuid});
-
-  @override
-  Future<Map> getDocument() async =>
-      _get(method: 'data', query: {'uuid': _access.uuid});
+  Future<Map> getDocument() async {
+    Response response = await dio.get('data', queryParameters: {'uuid': _access.uuid},
+        options: Options(
+          headers: await _auth.buildHeaders(),
+        ));
+    return response.data;
+  }
 }

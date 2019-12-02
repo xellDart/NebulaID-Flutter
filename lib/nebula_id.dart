@@ -25,6 +25,7 @@ class NebulaId {
     this._secret = secret;
     this._integration = integration;
     this._secret = secret;
+    this._user = user;
   }
 
   getUUID() => new User(this.nebula).createUser();
