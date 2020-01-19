@@ -14,6 +14,11 @@ class FilterDocument {
         'country': 'EUA',
         'documents': ['Passport'],
         'back': false
+      },
+      {
+        'country': 'Colombia',
+        'documents': ['Passport'],
+        'back': false
       }
     ];
   }
